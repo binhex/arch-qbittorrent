@@ -1,4 +1,4 @@
-FROM arch-base
+FROM binhex/arch-base:latest
 LABEL org.opencontainers.image.authors="binhex"
 LABEL org.opencontainers.image.source="https://github.com/binhex/arch-qbittorrent"
 

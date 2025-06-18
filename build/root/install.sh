@@ -54,7 +54,7 @@ source aur.sh
 ####
 
 # define comma separated list of paths
-install_paths="/etc/privoxy,/home/nobody"
+install_paths="/home/nobody"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
@@ -117,8 +117,6 @@ else
 	echo "[warn] WEBUI_PORT not defined (via -e WEBUI_PORT), defaulting to '8080'" | ts '%Y-%m-%d %H:%M:%.S'
 	export WEBUI_PORT="8080"
 fi
-
-export APPLICATION="qbittorrent"
 
 EOF
 
