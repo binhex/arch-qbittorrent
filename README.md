@@ -18,7 +18,6 @@ Latest stable qBittorrent release from Arch Linux repo.
 
 ```text
 docker run -d \
-
     -p 8080:8080 \
     -p 58946:58946 \
     -p 58946:58946/udp \
@@ -53,7 +52,6 @@ Password:- randomly generated, password shown in `/config/supervisord.log`
 
 ```bash
 docker run -d \
-
     -p 8080:8080 \
     -p 58946:58946 \
     -p 58946:58946/udp \
@@ -69,9 +67,7 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-
     binhex/arch-qbittorrent
-
 ```
 
 Due to issues with CSRF and port mapping, should you require to alter the port
@@ -83,7 +79,6 @@ For example, to set the port to 8090 you need to set:-
 ```bash
 
     -p 8090:8090 \
-
 ```
 
 and
@@ -91,7 +86,6 @@ and
 ```bash
 
     -e WEBUI_PORT=8090 \
-
 ```
 
 ---
