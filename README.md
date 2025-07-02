@@ -26,10 +26,10 @@ docker run -d \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
-    -e WEBUI_PORT=<port> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
     -e DEBUG=<true|false> \
     -e UMASK=<umask for created files> \
+    -e WEBUI_PORT=<port> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
 
@@ -60,11 +60,10 @@ docker run -d \
     -v /root/docker/config:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=no \
-    -e WEBUI_PORT=8080 \
     -e ENABLE_STARTUP_SCRIPTS=no \
     -e DEBUG=false \
-    -e WEBUI_PORT=8080 \
     -e UMASK=000 \
+    -e WEBUI_PORT=6080 \
     -e PUID=0 \
     -e PGID=0 \
     binhex/arch-qbittorrent
