@@ -5,7 +5,7 @@ function start_qbittorrent() {
 	echo "[INFO] Starting qbittorrent Web UI..."
 
 	# run process non daemonised (blocking)
-	/usr/bin/qbittorrent-nox --webui-port="${APPLICATION_PORT}" --profile=/config
+	/usr/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}" --profile=/config
 
 }
 
@@ -26,7 +26,7 @@ function main() {
 	if [[ "${GLUETUN_INCOMING_PORT}" == "yes" ]]; then
 
 		echo "[info] Starting qbittorrent Web UI with port configuration..."
-		/usr/local/bin/portget.sh --application-name 'qbittorrent' --application-port "${APPLICATION_PORT}" /usr/bin/qbittorrent-nox --webui-port="${APPLICATION_PORT}" --profile=/config
+		/usr/local/bin/portget.sh --application-name 'qbittorrent' --application-port "${WEBUI_PORT}" /usr/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}" --profile=/config
 	else
 		echo "[info] Skipping VPN incoming port configuration as env var 'GLUETUN_INCOMING_PORT' is not set to 'yes'"
 		start_qbittorrent

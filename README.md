@@ -26,7 +26,7 @@ docker run -d \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
-    -e APPLICATION_PORT=<port> \
+    -e WEBUI_PORT=<port> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
     -e DEBUG=<true|false> \
     -e UMASK=<umask for created files> \
@@ -60,7 +60,7 @@ docker run -d \
     -v /root/docker/config:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=no \
-    -e APPLICATION_PORT=8080 \
+    -e WEBUI_PORT=8080 \
     -e ENABLE_STARTUP_SCRIPTS=no \
     -e DEBUG=false \
     -e WEBUI_PORT=8080 \
