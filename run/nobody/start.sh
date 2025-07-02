@@ -23,6 +23,13 @@ function main() {
 	# running common setup tasks
 	common
 
+	if [[ -z "${WEBUI_PORT}" ]]; then
+		echo "[info] Environment variable 'WEBUI_PORT' is not set, defaulting to 8080..."
+		WEBUI_PORT=8080
+	else
+		echo "[info] Using WEBUI_PORT=${WEBUI_PORT}"
+	fi
+	
 	if [[ "${GLUETUN_INCOMING_PORT}" == "yes" ]]; then
 
 		echo "[info] Starting qbittorrent Web UI with port configuration..."
