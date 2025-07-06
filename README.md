@@ -63,7 +63,7 @@ docker run -d \
     -e ENABLE_STARTUP_SCRIPTS=no \
     -e DEBUG=false \
     -e UMASK=000 \
-    -e WEBUI_PORT=6080 \
+    -e WEBUI_PORT=8080 \
     -e PUID=0 \
     -e PGID=0 \
     binhex/arch-qbittorrent
