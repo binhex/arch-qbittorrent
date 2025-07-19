@@ -36,11 +36,6 @@ echo -e "export APPNAME=${APPNAME}\nexport IMAGE_RELEASE_TAG=${RELEASETAG}" >> '
 # ensure we have the latest builds scripts
 refresh.sh
 
-# note do NOT download build scripts - inherited from int script with envvars common defined
-
-# get target arch from Dockerfile argument
-TARGETARCH="${2}"
-
 # pacman packages
 ####
 
