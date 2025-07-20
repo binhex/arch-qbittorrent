@@ -21,8 +21,8 @@ function main() {
 		echo "[info] Using WEBUI_PORT=${WEBUI_PORT}"
 	fi
 
-	echo "[info] Starting qbittorrent Web UI..."
-	portset.sh --application-name 'qbittorrent' --webui-port "${WEBUI_PORT}" --application-parameters /usr/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}" --profile=/config
+	echo "[info] Starting ${APPNAME} Web UI..."
+	portset.sh --application-name "${APPNAME}" --webui-port "${WEBUI_PORT}" --application-parameters /usr/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}" --profile=/config
 }
 
 main
