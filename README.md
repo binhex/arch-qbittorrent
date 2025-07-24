@@ -28,11 +28,12 @@ docker run -d \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
     -e DEBUG=<true|false> \
+    -e HEALTHCHECK_COMMAND=<command> \
+    -e HEALTHCHECK_ACTION=<action> \
     -e UMASK=<umask for created files> \
     -e WEBUI_PORT=<port> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
-
     binhex/arch-qbittorrent
 
 ```
