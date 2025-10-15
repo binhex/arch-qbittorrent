@@ -16,7 +16,7 @@ Latest stable qBittorrent release from Arch Linux repo.
 
 ## Usage
 
-```text
+```bash
 docker run -d \
     -p 8080:8080 \
     -p 58946:58946 \
@@ -25,6 +25,7 @@ docker run -d \
     -v <path for data files>:/data \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
+    -e LIBTORRENT_VERSION=<1|2> \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
     -e DEBUG=<true|false> \
@@ -36,7 +37,6 @@ docker run -d \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
     binhex/arch-qbittorrent
-
 ```
 
 Please replace all user variables in the above command defined by <> with the
