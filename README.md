@@ -25,7 +25,6 @@ docker run -d \
     -v <path for data files>:/data \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
-    -e LIBTORRENT_VERSION=<1|2> \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
     -e DEBUG=<true|false> \

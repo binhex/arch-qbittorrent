@@ -114,14 +114,6 @@ rm /tmp/permissions_heredoc
 
 cat <<'EOF' > /tmp/envvars_heredoc
 
-export LIBTORRENT_VERSION=$(echo "${LIBTORRENT_VERSION}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
-if [[ ! -z "${LIBTORRENT_VERSION}" ]]; then
-	echo "[info] LIBTORRENT_VERSION defined as '${LIBTORRENT_VERSION}'" | ts '%Y-%m-%d %H:%M:%.S'
-else
-	echo "[info] LIBTORRENT_VERSION not defined,(via -e LIBTORRENT_VERSION), defaulting to '2'" | ts '%Y-%m-%d %H:%M:%.S'
-	export LIBTORRENT_VERSION="2"
-fi
-
 export WEBUI_PORT=$(echo "${WEBUI_PORT}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
 if [[ ! -z "${WEBUI_PORT}" ]]; then
 	echo "[info] WEBUI_PORT defined as '${WEBUI_PORT}'" | ts '%Y-%m-%d %H:%M:%.S'
