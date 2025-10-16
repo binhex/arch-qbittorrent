@@ -36,6 +36,34 @@ echo -e "export APPNAME=${APPNAME}\nexport IMAGE_RELEASE_TAG=${RELEASETAG}\nexpo
 # ensure we have the latest builds scripts
 refresh.sh
 
+# define path to store compiled packages
+package_path="/tmp/package"
+
+# build and insall libtorrent v1 (AUR helper does this) but only build qbittorrent, do not install, this
+# is because the aor package qbittorrent includes both qbittorrent and qbittorrent-nox and we only want
+# qbittorrent-nox installed
+aur.sh --aor-package 'qbittorrent' --aur-package 'libtorrent-rasterbar-1_2-git' --package-path "${package_path}"
+
+# ignore aor package 'libtorrent-rasterbar' to prevent upgrade to libtorrent v2 as libtorrent
+# v2 causes numerous issues, including crashing on unraid due to kernel bug
+sed -i -e 's~IgnorePkg.*~IgnorePkg = filesystem libtorrent-rasterbar~g' '/etc/pacman.conf'
+
+# Find all qbittorrent-nox packages recursively in package-path and install
+qbittorrent_packages=$(find "${package_path}" -name "qbittorrent-nox*.tar.*" -type f 2>/dev/null)
+
+if [[ -n "${qbittorrent_packages}" ]]; then
+    echo "[info] Found qbittorrent-nox packages:"
+    echo "${qbittorrent_packages}"
+    # Install each found package
+    for package in ${qbittorrent_packages}; do
+        echo "[info] Installing package: ${package}"
+        pacman -U "${package}" --noconfirm
+    done
+else
+    echo "[warn] No qbittorrent-nox packages found in ${package_path} directory tree"
+    exit 1
+fi
+
 # pacman packages
 ####
 
@@ -43,7 +71,7 @@ refresh.sh
 source upd.sh
 
 # define pacman packages
-pacman_packages="qbittorrent-nox python geoip"
+pacman_packages="python geoip"
 
 # install compiled packages using pacman
 if [[ -n "${pacman_packages}" ]]; then
