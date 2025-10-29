@@ -39,7 +39,7 @@ refresh.sh
 # define path to store compiled packages
 package_path="/tmp/package"
 
-# build and insall libtorrent v1 (AUR helper does this) but only build qbittorrent, do not install, this
+# build and install libtorrent v1 (AUR helper does this) but only build qbittorrent, do not install, this
 # is because the aor package qbittorrent includes both qbittorrent and qbittorrent-nox and we only want
 # qbittorrent-nox installed
 aur.sh --aor-package 'qbittorrent' --aur-package 'libtorrent-rasterbar-1_2-git' --package-path "${package_path}"
