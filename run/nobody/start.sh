@@ -22,7 +22,16 @@ function main() {
 	fi
 
 	echo "[info] Starting ${APPNAME} Web UI..."
-	portset.sh --webui-port "${WEBUI_PORT}" --app-parameters /usr/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}" --profile=/config
+	portset.sh \
+		--webui-port "${WEBUI_PORT}" \
+		--gluetun-incoming-port "${GLUETUN_INCOMING_PORT}" \
+		--gluetun-control-server-port "${GLUETUN_CONTROL_SERVER_PORT}" \
+		--gluetun-control-server-username "${GLUETUN_CONTROL_SERVER_USERNAME}" \
+		--gluetun-control-server-password "${GLUETUN_CONTROL_SERVER_PASSWORD}" \
+		--app-parameters /usr/bin/qbittorrent-nox \
+		--webui-port="${WEBUI_PORT}" \
+		--profile=/config
+
 }
 
 main
