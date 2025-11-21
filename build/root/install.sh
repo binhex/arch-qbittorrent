@@ -149,13 +149,23 @@ rm /tmp/permissions_heredoc
 
 cat <<'EOF' > /tmp/envvars_heredoc
 
-export WEBUI_PORT=$(echo "${WEBUI_PORT}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
-if [[ ! -z "${WEBUI_PORT}" ]]; then
-	echo "[info] WEBUI_PORT defined as '${WEBUI_PORT}'" | ts '%Y-%m-%d %H:%M:%.S'
-else
-	echo "[warn] WEBUI_PORT not defined (via -e WEBUI_PORT), defaulting to '8080'" | ts '%Y-%m-%d %H:%M:%.S'
-	export WEBUI_PORT="8080"
-fi
+# source in utility functions, need process_env_var
+source utils.sh
+
+# Define environment variables to process
+# Format: "VAR_NAME:DEFAULT_VALUE:REQUIRED:MASK"
+env_vars=(
+	"GLUETUN_CONTROL_SERVER_USERNAME::false:false"
+	"GLUETUN_CONTROL_SERVER_PASSWORD::false:true"
+	"GLUETUN_INCOMING_PORT:no:false:false"
+	"WEBUI_PORT:8080:false:false"
+)
+
+# Process each environment variable
+for env_var in "${env_vars[@]}"; do
+	IFS=':' read -r var_name default_value required mask_value <<< "${env_var}"
+	process_env_var "${var_name}" "${default_value}" "${required}" "${mask_value}"
+done
 
 EOF
 
