@@ -17,7 +17,7 @@ jobs:
             tag_suffix: ""
           - branch: libtorrentv1
             tag_suffix: ""
-    uses: binhex/workflow-templates/.github/workflows/workflow-docker-manual.yml@main
+    uses: binhex/templates/.github/workflows/workflow-docker-manual.yml@main
     with:
       tags: ${{ github.event.inputs.tags }}
       platforms: linux/amd64,linux/arm64
@@ -29,8 +29,6 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
       EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-      GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-      GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
       IMMORTALITY_PAT: ${{ secrets.IMMORTALITY_PAT }}
       QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
       QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
