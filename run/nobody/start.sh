@@ -7,6 +7,8 @@ function common() {
   echo "[info] Removing qbittorrent session lock file (if it exists)..."
   rm -f "${session_lock_filepath}"
 
+  echo "[info] Removing qbittorrent lock file (if it exists)..."
+  rm -f '/config/qBittorrent/config/lockfile'
 }
 
 function main() {
