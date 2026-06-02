@@ -23,6 +23,10 @@ function main() {
 		echo "[info] Using WEBUI_PORT=${WEBUI_PORT}"
 	fi
 
+	# set defaults for qBittorrent WebUI credentials if not provided
+	# (password is masked in env var processing, so we never echo it)
+	QBITTORRENT_WEBUI_USER="${QBITTORRENT_WEBUI_USER:-admin}"
+
 	echo "[info] Starting ${APPNAME} Web UI..."
 	portset.sh \
 		--webui-port "${WEBUI_PORT}" \
@@ -30,6 +34,8 @@ function main() {
 		--gluetun-control-server-port "${GLUETUN_CONTROL_SERVER_PORT}" \
 		--gluetun-control-server-username "${GLUETUN_CONTROL_SERVER_USERNAME}" \
 		--gluetun-control-server-password "${GLUETUN_CONTROL_SERVER_PASSWORD}" \
+		--qbittorrent-webui-user "${QBITTORRENT_WEBUI_USER}" \
+		--qbittorrent-webui-password "${QBITTORRENT_WEBUI_PASSWORD}" \
 		--app-parameters /usr/bin/qbittorrent-nox \
 		--webui-port="${WEBUI_PORT}" \
 		--profile=/config

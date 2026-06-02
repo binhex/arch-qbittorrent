@@ -106,6 +106,8 @@ env_vars=(
 	"GLUETUN_CONTROL_SERVER_USERNAME::false:false"
 	"GLUETUN_CONTROL_SERVER_PASSWORD::false:true"
 	"GLUETUN_INCOMING_PORT:no:false:false"
+	"QBITTORRENT_WEBUI_USER:admin:false:false"
+	"QBITTORRENT_WEBUI_PASSWORD::false:true"
 	"WEBUI_PORT:8080:false:false"
 )
 

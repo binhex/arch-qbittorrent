@@ -33,6 +33,8 @@ docker run -d \
     -e HEALTHCHECK_HOSTNAME=<hostname> \
     -e UMASK=<umask for created files> \
     -e WEBUI_PORT=<port> \
+    -e QBITTORRENT_WEBUI_USER=<username> \
+    -e QBITTORRENT_WEBUI_PASSWORD=<password> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
     binhex/arch-qbittorrent
@@ -45,9 +47,31 @@ correct values.
 
 `http://<host ip>:8080/`
 
-Username:- `admin`
+### Credentials
 
-Password:- randomly generated, password shown in `/config/supervisord.log`
+| Variable | Default | Description |
+| --- | --- | --- |
+| `QBITTORRENT_WEBUI_USER` | `admin` | WebUI username |
+| `QBITTORRENT_WEBUI_PASSWORD` | *(auto-generated)* | WebUI pwd, see note |
+
+Username:- `admin` (or the value of `QBITTORRENT_WEBUI_USER`)
+
+Password (if `QBITTORRENT_WEBUI_PASSWORD` not set):-
+
+On first run a random password is auto-generated and shown in
+`/config/supervisord.log`. Look for a line like:
+
+```text
+[info] QBITTORRENT_WEBUI_PASSWORD not set, auto-generated password: AbCdEfGh1
+```
+
+On **first run** (no config yet), set `-e QBITTORRENT_WEBUI_PASSWORD=<your password>`
+to use your own password instead of an auto-generated one.
+
+On **subsequent runs** the env var is only used for API authentication
+(required when `GLUETUN_INCOMING_PORT=yes`). It will NOT overwrite whatever
+password is already stored in the config — that can only be changed from
+inside the WebUI under Options → Web UI → Authentication.
 
 ## PIA example
 
@@ -70,9 +94,23 @@ docker run -d \
     binhex/arch-qbittorrent
 ```
 
+### WebUI notes
+
+#### Port
+
 Due to issues with CSRF and port mapping, should you require to alter the port
 for the webui you need to change both sides of the -p 8080 switch AND set the
 WEBUI_PORT variable to the new port.
+
+#### Password
+
+The env var `QBITTORRENT_WEBUI_PASSWORD` is used for two things:
+1. **First run** — hashed and written to the config as the initial password
+2. **All runs** — used for API authentication (when `GLUETUN_INCOMING_PORT=yes`)
+
+Once a password hash exists in the config (whether auto-generated or user-set),
+**it is never overwritten** by the env var. To change your password, use the
+WebUI under Options → Web UI → Authentication.
 
 For example, to set the port to 8090 you need to set:-
 
