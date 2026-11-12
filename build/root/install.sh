@@ -109,6 +109,8 @@ env_vars=(
 	"QBITTORRENT_WEBUI_USER:admin:false:false"
 	"QBITTORRENT_WEBUI_PASSWORD::false:true"
 	"WEBUI_PORT:8080:false:false"
+	"ENABLE_STARTUP_SCRIPTS:no:false:false"
+	"STARTUP_SCRIPTS_MODE:wait:false:false"
 )
 
 # Process each environment variable
