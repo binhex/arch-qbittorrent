@@ -27,6 +27,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=<yes|no> \
     -e ENABLE_STARTUP_SCRIPTS=<yes|no> \
+    -e STARTUP_SCRIPTS_MODE=<wait|parallel> \
     -e DEBUG=<true|false> \
     -e HEALTHCHECK_COMMAND=<command> \
     -e HEALTHCHECK_ACTION=<action> \
@@ -62,6 +63,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime:ro \
     -e GLUETUN_INCOMING_PORT=no \
     -e ENABLE_STARTUP_SCRIPTS=no \
+    -e STARTUP_SCRIPTS_MODE=wait \
     -e DEBUG=false \
     -e UMASK=000 \
     -e WEBUI_PORT=8080 \
@@ -87,6 +89,17 @@ and
 
     -e WEBUI_PORT=8090 \
 ```
+
+## Notes
+
+`ENABLE_STARTUP_SCRIPTS` when set to `yes` (default `no`) will allow a user to
+install additional packages from the official Arch Repository or the Arch User
+Repository (AUR) via scripts located in the folder
+`/config/qbittorrent/scripts/`.
+
+`STARTUP_SCRIPTS_MODE` controls how those scripts are executed, set to `wait`
+(default) to run each script in turn and wait for it to complete before the next
+script runs, or `parallel` to run all scripts at the same time.
 
 ---
 
